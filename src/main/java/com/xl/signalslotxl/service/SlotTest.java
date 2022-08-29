@@ -19,14 +19,14 @@ public class SlotTest {
     }
     
     @Connect(clazz = SignalTest.class, signal = "Method_1,Method_2")
-    public void fun_11(String str) {
+    public void fun_2(String str) {
         System.out.println(Thread.currentThread().getName());
-        System.out.println("SlotTest.fun_11" + str);
+        System.out.println("SlotTest.fun_2" + str);
     }
     
     @Connect(clazz = SignalTest.class, signal = "Method_1,Method_2")
-    public void fun_12(String str) {
+    public void fun_3(String str) {
         System.out.println(Thread.currentThread().getName());
-        System.out.println("SlotTest.fun_12" + str);
+        System.out.println("SlotTest.fun_3" + str);
     }
 }

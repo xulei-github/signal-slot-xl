@@ -32,55 +32,55 @@ public class InterfaceConfig implements ApplicationListener<ContextRefreshedEven
         //赋值全局变量
         setConstantValue(signalMap, signalList, slotMap, slotList);
         //拿到每个类方法上的注解
-        getMethodAnnoOnClass(signalMap, signalList, slotMap, slotList);
+//        getMethodAnnoOnClass(signalMap, signalList, slotMap, slotList);
         
       
     }
     
-    private void getMethodAnnoOnClass(Map<String, Object> signalMap, String[] signalList, Map<String, Object> slotMap, String[] slotList) {
-        Method[] signalMethods = new Method[1024];
-        int i = 0;
-        for (String s : signalList) {
-            Object o = signalMap.get(s);
-            Method[] declaredMethods = o.getClass().getDeclaredMethods();
-            
-            for (Method declaredMethod : declaredMethods) {
-                signalMethods[i] = declaredMethod;
-                SignalMethod signalMethod = declaredMethod.getAnnotation(SignalMethod.class);
-                i++;
-            }
-        }
-        
-        for (String s : slotList) {
-            //Slot 注解的类
-            Object o = slotMap.get(s);
-            //Connect 注解的方法
-            Method[] declaredMethods = o.getClass().getDeclaredMethods();
-            for (Method declaredMethod : declaredMethods) {
-                //TODO 注解中 的方法和类名匹配上之后 保存对应的关系
-                Connect connect = declaredMethod.getAnnotation(Connect.class);
-                //Signal类名
-                Class signalClazz = connect.clazz();
-                // signal 方法名
-                String[] signal = connect.signal().split(",");
-                for (String s1 : signal) {
-                    for (Method signalMethod : signalMethods) {
-                        if (signalMethod != null && signalMethod != null) {
-                            if (s1.equals(signalMethod.getName())) {
-                                SignalSlotProperties signalSlotProperties = new SignalSlotProperties();
-                                signalSlotProperties.setSignalClass(signalClazz);
-                                signalSlotProperties.setSignalMethod(s1);
-                                signalSlotProperties.setSlotClass(o.getClass());
-                                signalSlotProperties.setSlotMethod(declaredMethod.getName());
-                               SignalSlotConstant.signalSlotProperties.add(signalSlotProperties);
-                          
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
+//    private void getMethodAnnoOnClass(Map<String, Object> signalMap, String[] signalList, Map<String, Object> slotMap, String[] slotList) {
+//        Method[] signalMethods = new Method[1024];
+//        int i = 0;
+//        for (String s : signalList) {
+//            Object o = signalMap.get(s);
+//            Method[] declaredMethods = o.getClass().getDeclaredMethods();
+//
+//            for (Method declaredMethod : declaredMethods) {
+//                signalMethods[i] = declaredMethod;
+//                SignalMethod signalMethod = declaredMethod.getAnnotation(SignalMethod.class);
+//                i++;
+//            }
+//        }
+//
+//        for (String s : slotList) {
+//            //Slot 注解的类
+//            Object o = slotMap.get(s);
+//            //Connect 注解的方法
+//            Method[] declaredMethods = o.getClass().getDeclaredMethods();
+//            for (Method declaredMethod : declaredMethods) {
+//                //TODO 注解中 的方法和类名匹配上之后 保存对应的关系
+//                Connect connect = declaredMethod.getAnnotation(Connect.class);
+//                //Signal类名
+//                Class signalClazz = connect.clazz();
+//                // signal 方法名
+//                String[] signal = connect.signal().split(",");
+//                for (String s1 : signal) {
+//                    for (Method signalMethod : signalMethods) {
+//                        if (signalMethod != null && signalMethod != null) {
+//                            if (s1.equals(signalMethod.getName())) {
+//                                SignalSlotProperties signalSlotProperties = new SignalSlotProperties();
+//                                signalSlotProperties.setSignalClass(signalClazz);
+//                                signalSlotProperties.setSignalMethod(s1);
+//                                signalSlotProperties.setSlotClass(o.getClass());
+//                                signalSlotProperties.setSlotMethod(declaredMethod.getName());
+//                               SignalSlotConstant.signalSlotProperties.add(signalSlotProperties);
+//
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//    }
     
     /**
      * 给全局变量赋值

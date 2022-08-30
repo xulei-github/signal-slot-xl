@@ -14,19 +14,16 @@ import org.springframework.stereotype.Component;
 public class SlotTest {
     @Connect(clazz = SignalTest.class, signal = "Method_1,Method_2")
     public void fun_1(String str) {
-        System.out.println(Thread.currentThread().getName());
-        System.out.println("SlotTest.fun_1" + str);
+        System.out.println("线程"+Thread.currentThread().getName() + "调用SlotTest.fun_1方法,参数:" + str);
     }
-    
-    @Connect(clazz = SignalTest.class, signal = "Method_1,Method_2")
+
+    //    @Connect(clazz = SignalTest.class, signal = "Method_1,Method_2")
     public void fun_2(String str) {
-        System.out.println(Thread.currentThread().getName());
-        System.out.println("SlotTest.fun_2" + str);
+        System.out.println("线程"+Thread.currentThread().getName() + "调用SlotTest.fun_2方法,参数:" + str);
     }
-    
-    @Connect(clazz = SignalTest.class, signal = "Method_1,Method_2")
+
+    @Connect(clazz = SignalTest01.class, signal = "Method_2")
     public void fun_3(String str) {
-        System.out.println(Thread.currentThread().getName());
-        System.out.println("SlotTest.fun_3" + str);
+        System.out.println("线程"+Thread.currentThread().getName() + "调用SlotTest.fun_3方法,参数:" + str);
     }
 }

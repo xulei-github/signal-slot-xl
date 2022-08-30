@@ -13,4 +13,21 @@ public class SignalSlotProperties {
     private Class slotClass;
     private String signalMethod;
     private String slotMethod;
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof SignalSlotProperties) {
+            SignalSlotProperties signalSlotProperties = (SignalSlotProperties) obj;
+            return signalClass.getName().equals(signalSlotProperties.getSignalClass().getName())
+                    && signalMethod.equals(signalSlotProperties.getSignalMethod());
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        String str = signalClass.getName() + signalMethod;
+        int result = str.hashCode();
+        return result;
+    }
 }

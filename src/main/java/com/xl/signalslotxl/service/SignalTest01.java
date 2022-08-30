@@ -11,15 +11,16 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @Signal
-public class SignalTest {
+public class SignalTest01 {
     @SignalMethod(methodName = "Method_1")
     public void Method_1(String value) {
         System.out.println("SignalTest.methond_1" + value);
     }
-    
-//    @SignalMethod
+
+    //    @SignalMethod
+    @SignalMethod
     public void Method_2(String value) {
-        System.out.println("SignalTest.methond_2" + value);
+        System.out.println("调用SignalTest类的methond_2方法" + value);
     }
-    
+
 }
